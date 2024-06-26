@@ -1,6 +1,7 @@
 package vn.hoidanit.laptopshop.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
@@ -20,11 +21,19 @@ public class UserService {
     }
 
     public List<User> getAllUsersByEmail(String email) {
-        return this.userRepository.findByEmail(email);
+        return this.userRepository.findOneByEmail(email);
     }
 
     public User handleSaveUser(User user) {
         return this.userRepository.save(user);
+    }
+
+    public Optional<User> getUserByID(Long id) {
+        return this.userRepository.findById(id);
+    }
+
+    public User handleUpdateUser(User user) {
+        return this.userRepository.saveUser(user);
     }
 
 }
