@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import vn.hoidanit.laptopshop.domain.User;
 import vn.hoidanit.laptopshop.repository.UserRepository;
 import vn.hoidanit.laptopshop.service.UserService;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class UserController {
@@ -36,7 +40,7 @@ public class UserController {
 
     // User detail
     @RequestMapping("/admin/user/{id}")
-    public String getlUserDetaiPage(Model model, @PathVariable long id) {
+    public String getUserDetailPage(Model model, @PathVariable long id) {
         model.addAttribute("id", id);
         model.addAttribute("user", this.userService.getUserByID(id).orElse(null));
         return "admin/user/show";
@@ -64,9 +68,27 @@ public class UserController {
     }
 
     // handle update user
-    @RequestMapping(value = "/admin/user/update", method = RequestMethod.POST)
-    public String updateUserPage(Model model, @ModelAttribute("newUser") User newUser) {
-        userService.handleUpdateUser(newUser);
+    @PostMapping("/admin/user/update")
+    public String postUpdateUser(Model model, @ModelAttribute("newUser") User newUser) {
+        User currentUser = this.userService.getUserByID(newUser.getId()).orElse(null);
+        if (currentUser != null) {
+            userService.handleSaveUser(currentUser);
+        }
         return "redirect:/admin/user";
     }
+
+    // form delete user
+    @GetMapping("/admin/user/delete/{id}")
+    public String getDeleteUserPage(Model model, @PathVariable Long id) {
+        model.addAttribute("id", id);
+        return "/admin/user/delete";
+    }
+
+    // handle delete user
+    @PostMapping("/admin/user/delete/{id}")
+    public String postDeleteUser(Model model, @PathVariable Long id) {
+        this.userService.deleteAUser(id);
+        return "redirect:/admin/user";
+    }
+
 }

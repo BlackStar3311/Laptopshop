@@ -43,7 +43,7 @@
                                             <td>
                                                 <a href="/admin/user/${u.id}" class="btn btn-success">View</a>
                                                 <a href="/admin/user/update/${u.id}" class="btn btn-warning">Update</a>
-                                                <button class="btn btn-danger">Delete</button>
+                                                <a href="/admin/user/delete/${u.id}" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                     </c:forEach>

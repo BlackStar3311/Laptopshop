@@ -32,8 +32,8 @@ public class UserService {
         return this.userRepository.findById(id);
     }
 
-    public User handleUpdateUser(User user) {
-        return this.userRepository.saveUser(user);
+    public void deleteAUser(Long id) {
+        this.userRepository.deleteById(id);
     }
 
 }
