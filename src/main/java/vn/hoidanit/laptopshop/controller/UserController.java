@@ -72,6 +72,9 @@ public class UserController {
     public String postUpdateUser(Model model, @ModelAttribute("newUser") User newUser) {
         User currentUser = this.userService.getUserByID(newUser.getId()).orElse(null);
         if (currentUser != null) {
+            currentUser.setAddress(newUser.getAddress());
+            currentUser.setFullName(newUser.getFullName());
+            currentUser.setPhone(newUser.getPhone());
             userService.handleSaveUser(currentUser);
         }
         return "redirect:/admin/user";
