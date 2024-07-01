@@ -28,6 +28,7 @@
                             <form:form method="post" action="/admin/user/delete/${id}">
                                 <button class="btn btn-danger">Confirm</button>
                             </form:form>
+                            <a href="/admin/user" class="btn btn-success mt-3">Cancel</a>
                         </div>
                     </div>
                 </div>

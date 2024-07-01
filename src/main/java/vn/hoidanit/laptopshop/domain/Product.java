@@ -13,15 +13,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "products")
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String email;
-    private String password;
-    private String fullName;
-    private String address;
-    private String phone;
-    private String avatar;
+    private String name;
+    private double price;
+    private String image;
+    private String detailDesc;
+    private String shortDesc;
+    private long quantity;
+    private long sold;
+    private String factory;
+    private String target;
 }
