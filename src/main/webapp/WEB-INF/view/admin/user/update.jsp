@@ -83,8 +83,8 @@
                                                         src="http://localhost:8080/images/avatar/${newUser.avatar}"
                                                         alt="avatar preview" id="avatarPreview"> -->
                                                     <img style="max-height: 250px;"
-                                                        src="/images/avatar/${newUser.avatar}"
-                                                        alt="avatar preview" id="avatarPreview">
+                                                        src="/images/avatar/${newUser.avatar}" alt="avatar preview"
+                                                        id="avatarPreview">
                                                 </div>
                                                 <div class="col-12 mb-5">
                                                     <button type="submit" class="btn btn-warning">Update</button>

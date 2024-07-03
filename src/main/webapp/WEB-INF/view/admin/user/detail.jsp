@@ -34,16 +34,19 @@
                                                 <h3>User detail with id = ${id}</h3>
                                             </div>
                                             <hr>
-                                            <div class="card" style="width: 60%;">
-                                                <div class="card-header">
-                                                    User information
-                                                </div>
-                                                <ul class="list-group list-group-flush">
+                                            <div class=" row">
+                                                <ul class="list-group list-group-flush ccol-12 col-md-6">
                                                     <li class="list-group-item">ID: ${user.id}</li>
                                                     <li class="list-group-item">Email: ${user.email}</li>
                                                     <li class="list-group-item">Full name: ${user.fullName}</li>
                                                     <li class="list-group-item">Address: ${user.address}</li>
+                                                    <li class="list-group-item">Role: ${user.role.name}</li>
                                                 </ul>
+                                                <div class="col-12 col-md-6">
+                                                    <p>Avatar</p>
+                                                    <img style="max-height: 250px;" src="/images/avatar/${user.avatar}"
+                                                        alt="avatar preview" id="avatarPreview">
+                                                </div>
                                             </div>
                                             <a href="/admin/user" class="btn btn-success mt-3">Back</a>
                                         </div>
