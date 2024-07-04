@@ -119,7 +119,6 @@ public class UserController {
     }
 
     // handle delete user
-    // chưa code update
     @PostMapping("/admin/user/delete/{id}")
     public String postDeleteUser(Model model, @PathVariable Long id) {
         this.userService.deleteAUser(id);

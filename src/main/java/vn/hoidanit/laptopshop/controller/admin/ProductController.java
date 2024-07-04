@@ -47,7 +47,7 @@ public class ProductController {
             return "/admin/product/create";
         String imgProduct = this.uploadService.handleSaveUploadFile(file, "product");
         newProduct.setImage(imgProduct);
-        this.productService.handleCreateProduct(newProduct);
+        this.productService.handleSaveProduct(newProduct);
         return "redirect:/admin/product";
 
     }
@@ -80,10 +80,20 @@ public class ProductController {
         return "/admin/product/update";
     }
 
-     // handle update product
-     @PostMapping("/admin/product/update/")
-     public String handleUpdateProduct(Model model, @PathVariable Long id) {
-         this.productService.deleteProductById(id);
-         return "redirect:/admin/product";
-     }
+    // handle update product
+    @PostMapping("/admin/product/update")
+    public String handleUpdateProduct(Model model, @Valid @ModelAttribute("product") Product newValueProduct,
+            BindingResult newProductBindingResult, @RequestParam("imgProduct") MultipartFile file) {
+        Product p = this.productService.getProductById(newValueProduct.getId()).orElse(null);
+        String imgProduct = this.uploadService.handleSaveUploadFile(file, "product");
+        if (newProductBindingResult.hasErrors()) {
+            return "/admin/product/update";
+        }
+        if (imgProduct.isEmpty()) {
+            imgProduct = p.getImage();
+        }
+        newValueProduct.setImage(imgProduct);
+        this.productService.handleSaveProduct(newValueProduct);
+        return "redirect:/admin/product";
+    }
 }

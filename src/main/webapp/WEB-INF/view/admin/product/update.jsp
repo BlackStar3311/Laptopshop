@@ -16,6 +16,10 @@
                 <script>
                     $(document).ready(() => {
                         const avatarFile = $("#avatarFile");
+                        const orgImg = "${product.image}"
+                        if(orgImg) {
+                            $("#avatarPreview").css({ "display": "block" });
+                        }
                         avatarFile.change(function (e) {
                             const imgURL = URL.createObjectURL(e.target.files[0]);
                             $("#avatarPreview").attr("src", imgURL);
@@ -43,7 +47,7 @@
                                         <div class="col-md-6 col-12 mx-auto">
                                             <h3>Update product with id ${id}</h3>
                                             <hr>
-                                            <form:form method="post" action="/admin/user/update"
+                                            <form:form method="post" action="/admin/product/update"
                                                 enctype="multipart/form-data" modelAttribute="product" class="row">
                                                 <c:set var="errorNameProduct">
                                                     <form:errors path="name" cssClass="invalid-feedback" />
@@ -128,8 +132,8 @@
                                                         accept=".png,.jpg,.jpeg" name="imgProduct" />
                                                 </div>
                                                 <div class="mb-3 col-12">
-                                                    <img style="max-height: 250px;" alt="avatar preview" src="/images/product/${product.image}"
-                                                        id="avatarPreview">
+                                                    <img style="max-height: 250px; display: none;" alt="avatar preview"
+                                                        src="/images/product/${product.image}" id="avatarPreview">
                                                 </div>
                                                 <div class="col-12 mb-5">
                                                     <button type="submit" class="btn btn-warning">Update</button>

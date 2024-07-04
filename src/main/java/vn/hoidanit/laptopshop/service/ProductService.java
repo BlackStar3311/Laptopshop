@@ -19,7 +19,7 @@ public class ProductService {
         return this.productRepository.findAll();
     }
 
-    public Product handleCreateProduct(Product product) {
+    public Product handleSaveProduct(Product product) {
         return this.productRepository.save(product);
     }
 
