@@ -65,14 +65,16 @@ public class UserController {
     // handle create user
     @PostMapping("/admin/user/create")
     public String createUserPage(Model model, @ModelAttribute("newUser") @Valid User newUser,
-            BindingResult bindingResult, @RequestParam("imgUserFile") MultipartFile file) {
+            BindingResult newUserBindingResult, @RequestParam("imgUserFile") MultipartFile file) {
 
-        List<FieldError> errors = bindingResult.getFieldErrors();
+        List<FieldError> errors = newUserBindingResult.getFieldErrors();
         for (FieldError error : errors) {
-            System.out.println(error.getObjectName() + " - " + error.getDefaultMessage());
+            System.out.println(error.getField() + " - " + error.getDefaultMessage());
         }
         // validate
-
+        if(newUserBindingResult.hasErrors()){
+            return "/admin/user/create" ;
+        }
         //
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
         String hashPassword = this.passwordEncoder.encode(newUser.getPassword());
