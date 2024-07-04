@@ -32,7 +32,8 @@
                                         <div class="col-12 mx-auto">
                                             <div class="d-flex justify-content-between">
                                                 <h3>Table products</h3>
-                                                <a href="/admin/user/create" class="btn btn-primary">Create a product</a>
+                                                <a href="/admin/product/create" class="btn btn-primary">Create a
+                                                    product</a>
                                             </div>
                                             <hr>
                                             <table table class="table table-hover table-bordered">
@@ -45,24 +46,24 @@
                                                         <th scope="col">Action</th>
                                                     </tr>
                                                 </thead>
-                                                <!-- <tbody>
-                                                    <c:forEach items="${listUser}" var="u">
+                                                <tbody>
+                                                    <c:forEach items="${listProducts}" var="p">
                                                         <tr>
-                                                            <th>${u.id}</th>
-                                                            <td>${u.email}</td>
-                                                            <td>${u.fullName}</td>
-                                                            <td>${u.role.name}</td>
+                                                            <th>${p.id}</th>
+                                                            <td>${p.name}</td>
+                                                            <td>${p.price}</td>
+                                                            <td>${p.factory}</td>
                                                             <td>
-                                                                <a href="/admin/user/${u.id}"
+                                                                <a href="/admin/product/${p.id}"
                                                                     class="btn btn-success">View</a>
-                                                                <a href="/admin/user/update/${u.id}"
+                                                                <a href="/admin/product/update/${p.id}"
                                                                     class="btn btn-warning">Update</a>
-                                                                <a href="/admin/user/delete/${u.id}"
+                                                                <a href="/admin/product/delete/${p.id}"
                                                                     class="btn btn-danger">Delete</a>
                                                             </td>
                                                         </tr>
                                                     </c:forEach>
-                                                </tbody> -->
+                                                </tbody>
                                             </table>
                                         </div>
                                     </div>
@@ -74,7 +75,7 @@
                 </div>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
                     crossorigin="anonymous"></script>
-                <script src="js/scripts.js"></script>
+                <script src="/js/scripts.js"></script>
             </body>
 
             </html>
