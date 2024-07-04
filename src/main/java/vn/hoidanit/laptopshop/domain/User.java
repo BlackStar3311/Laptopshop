@@ -29,12 +29,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Email(message = "Email is not valid", regexp = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[azA-Z0-9.-]+$")
+    // regex không đúng
+    // @Email(message = "Email is not valid", regexp
+    // ="^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[azA-Z0-9.-]+$")
+
+    @Email(message = "Email is not valid")
     @NotEmpty(message = "Email cannot be empty")
     private String email;
 
-    @NotNull
-    @Size(min = 2, message = "Password must be at least 2 characters")
+    // @NotNull
+    // @Size(min = 2, message = "Password must be at least 2 characters")
     private String password;
 
     @NotNull

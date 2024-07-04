@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,12 +25,14 @@ public class ProductController {
         this.uploadService = uploadService;
     }
 
+    // product page
     @GetMapping("/admin/product")
     public String getProduct(Model model) {
         model.addAttribute("listProducts", this.productService.getAllProducts());
         return "/admin/product/show";
     }
 
+    // create page
     @GetMapping("/admin/product/create")
     public String getCreateProductPage(Model model) {
         model.addAttribute("newProduct", new Product());
@@ -48,4 +51,39 @@ public class ProductController {
         return "redirect:/admin/product";
 
     }
+
+    // detail page
+    @GetMapping("/admin/product/{id}")
+    public String getDetailProductPage(Model model, @PathVariable Long id) {
+        model.addAttribute("product", this.productService.getProductById(id).orElse(null));
+        return "/admin/product/detail";
+    }
+
+    // delete product page
+    @GetMapping("/admin/product/delete/{id}")
+    public String getDeleteProductPage(Model model, @PathVariable Long id) {
+        model.addAttribute("product", this.productService.getProductById(id).orElse(null));
+        return "/admin/product/delete";
+    }
+
+    // handle delete product
+    @PostMapping("/admin/product/delete/{id}")
+    public String handleDeleteProduct(Model model, @PathVariable Long id) {
+        this.productService.deleteProductById(id);
+        return "redirect:/admin/product";
+    }
+
+    // update product page
+    @GetMapping("/admin/product/update/{id}")
+    public String getUpdateProductPage(Model model, @PathVariable Long id) {
+        model.addAttribute("product", this.productService.getProductById(id).orElse(null));
+        return "/admin/product/update";
+    }
+
+     // handle update product
+     @PostMapping("/admin/product/update/")
+     public String handleUpdateProduct(Model model, @PathVariable Long id) {
+         this.productService.deleteProductById(id);
+         return "redirect:/admin/product";
+     }
 }
