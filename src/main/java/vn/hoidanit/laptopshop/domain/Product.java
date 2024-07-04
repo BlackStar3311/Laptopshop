@@ -2,6 +2,7 @@ package vn.hoidanit.laptopshop.domain;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,12 +32,13 @@ public class Product {
     @Size(min = 2, message = "Name of the product must at least 2 characters")
     private String name;
 
-    @DecimalMin(value="10",message = "Price must be at least 10")
+    @DecimalMin(value = "10", message = "Price must be at least 10")
     private double price;
 
     private String image;
 
     @NotBlank(message = "Detail description can't be empty")
+    @Column(columnDefinition = "NVARCHAR(MAX)")
     private String detailDesc;
 
     @NotBlank(message = "Short description can't be empty")
@@ -47,6 +49,5 @@ public class Product {
     private long sold;
     private String factory;
     private String target;
-
 
 }

@@ -78,7 +78,7 @@
                                                 </div>
                                                 <div class="mb-3 col-12 ">
                                                     <label class="form-label ">Detail description:</label>
-                                                    <form:input type="text"
+                                                    <form:textarea
                                                         class="form-control ${not empty errorPrice ?'is-invalid':''}"
                                                         path="detailDesc" />
                                                     ${errorDetailDesc}
