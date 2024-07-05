@@ -72,8 +72,8 @@ public class UserController {
             System.out.println(error.getField() + " - " + error.getDefaultMessage());
         }
         // validate
-        if(newUserBindingResult.hasErrors()){
-            return "/admin/user/create" ;
+        if (newUserBindingResult.hasErrors()) {
+            return "/admin/user/create";
         }
         //
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
