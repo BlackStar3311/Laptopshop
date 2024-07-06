@@ -17,6 +17,8 @@ public class RegisterDTO {
     @Email(message = "Email is not valid")
     @NotEmpty(message = "Email cannot be empty")
     private String email;
+
+    @Size(min = 3, message = "First must be at least 3 characters")
     private String password;
     private String confirmPassword;
 
