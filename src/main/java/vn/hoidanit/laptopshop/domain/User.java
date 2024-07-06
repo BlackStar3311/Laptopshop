@@ -2,6 +2,7 @@ package vn.hoidanit.laptopshop.domain;
 
 import java.util.List;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -43,6 +44,7 @@ public class User {
 
     @NotNull
     @Size(min = 2, message = "Fullname must be at least 2 characters")
+    @Column(columnDefinition = "NVARCHAR(50)")
     private String fullName;
 
     private String address;

@@ -98,8 +98,11 @@ public class UserController {
     public String postUpdateUser(Model model, @ModelAttribute("newUser") User newUser,
             @RequestParam("imgUserFile") MultipartFile file) {
         User currentUser = this.userService.getUserByID(newUser.getId()).orElse(null);
+        String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
+        if(avatar.equals("")) {
+            avatar = currentUser.getAvatar();
+        }
         if (currentUser != null) {
-            String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
             currentUser.setAddress(newUser.getAddress());
             currentUser.setFullName(newUser.getFullName());
             currentUser.setPhone(newUser.getPhone());

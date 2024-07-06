@@ -42,6 +42,7 @@ public class Product {
     private String detailDesc;
 
     @NotBlank(message = "Short description can't be empty")
+    @Column(columnDefinition = "NVARCHAR(255)")
     private String shortDesc;
 
     @DecimalMin(value = "1.0", message = "Quantity must be at least 1")
