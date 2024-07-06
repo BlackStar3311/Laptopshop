@@ -44,7 +44,7 @@ public class User {
 
     @NotNull
     @Size(min = 2, message = "Fullname must be at least 2 characters")
-    @Column(columnDefinition = "NVARCHAR(50)")
+    @Column(columnDefinition = "NVARCHAR(50)")  
     private String fullName;
 
     private String address;
