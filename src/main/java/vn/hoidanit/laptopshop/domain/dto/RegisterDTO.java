@@ -9,7 +9,7 @@ import vn.hoidanit.laptopshop.service.validator.RegisterChecked;
 @RegisterChecked
 @Data
 public class RegisterDTO {
-    @Size(min = 3, message = "First must be at least 3 characters")
+    @Size(min = 3, message = "First name must be at least 3 characters")
     private String firstName;
 
     private String lastName;
@@ -18,7 +18,7 @@ public class RegisterDTO {
     @NotEmpty(message = "Email cannot be empty")
     private String email;
 
-    @Size(min = 3, message = "First must be at least 3 characters")
+    @Size(min = 3, message = "Pasword must be at least 3 characters")
     private String password;
     private String confirmPassword;
 
