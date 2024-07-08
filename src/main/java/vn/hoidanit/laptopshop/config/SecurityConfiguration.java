@@ -46,15 +46,19 @@ public class SecurityConfiguration {
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(authorize -> authorize
+                        // allow client forward to view
                         .dispatcherTypeMatchers(DispatcherType.FORWARD,
                                 DispatcherType.INCLUDE)
                         .permitAll()
-                        .requestMatchers("/", "/login", "/client/**", "/css/**",
-                                "/js/**",
+                        //
+                        // allow client access these folders
+                        .requestMatchers("/", "/login", "/client/**", "/css/**", "/js/**",
                                 "/images/**")
                         .permitAll()
-                        .anyRequest().permitAll())
-
+                        //
+                        // request authen
+                        .anyRequest().authenticated())
+                //
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .failureUrl("/login?error")
