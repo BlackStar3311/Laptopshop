@@ -29,14 +29,14 @@ public class ProductController {
     @GetMapping("/admin/product")
     public String getProduct(Model model) {
         model.addAttribute("listProducts", this.productService.getAllProducts());
-        return "/admin/product/show";
+        return "admin/product/show";
     }
 
     // create page
     @GetMapping("/admin/product/create")
     public String getCreateProductPage(Model model) {
         model.addAttribute("newProduct", new Product());
-        return "/admin/product/create";
+        return "admin/product/create";
     }
 
     // handle create product
@@ -44,7 +44,7 @@ public class ProductController {
     public String createProductPage(Model model, @ModelAttribute("newProduct") @Valid Product newProduct,
             BindingResult newProductBindingResult, @RequestParam("imgProduct") MultipartFile file) {
         if (newProductBindingResult.hasErrors())
-            return "/admin/product/create";
+            return "admin/product/create";
         String imgProduct = this.uploadService.handleSaveUploadFile(file, "product");
         newProduct.setImage(imgProduct);
         this.productService.handleSaveProduct(newProduct);
@@ -56,14 +56,14 @@ public class ProductController {
     @GetMapping("/admin/product/{id}")
     public String getDetailProductPage(Model model, @PathVariable Long id) {
         model.addAttribute("product", this.productService.getProductById(id).orElse(null));
-        return "/admin/product/detail";
+        return "admin/product/detail";
     }
 
     // delete product page
     @GetMapping("/admin/product/delete/{id}")
     public String getDeleteProductPage(Model model, @PathVariable Long id) {
         model.addAttribute("product", this.productService.getProductById(id).orElse(null));
-        return "/admin/product/delete";
+        return "admin/product/delete";
     }
 
     // handle delete product
@@ -77,7 +77,7 @@ public class ProductController {
     @GetMapping("/admin/product/update/{id}")
     public String getUpdateProductPage(Model model, @PathVariable Long id) {
         model.addAttribute("product", this.productService.getProductById(id).orElse(null));
-        return "/admin/product/update";
+        return "admin/product/update";
     }
 
     // handle update product
@@ -87,7 +87,7 @@ public class ProductController {
         Product p = this.productService.getProductById(newValueProduct.getId()).orElse(null);
         String imgProduct = this.uploadService.handleSaveUploadFile(file, "product");
         if (newProductBindingResult.hasErrors()) {
-            return "/admin/product/update";
+            return "admin/product/update";
         }
         if (imgProduct.isEmpty()) {
             imgProduct = p.getImage();

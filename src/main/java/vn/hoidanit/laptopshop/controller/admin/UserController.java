@@ -73,7 +73,7 @@ public class UserController {
         }
         // validate
         if (newUserBindingResult.hasErrors()) {
-            return "/admin/user/create";
+            return "admin/user/create";
         }
         //
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
@@ -90,7 +90,7 @@ public class UserController {
     public String getUpdateUserPage(Model model, @PathVariable Long id) {
         User newUser = this.userService.getUserByID(id).orElse(null);
         model.addAttribute("newUser", newUser);
-        return "/admin/user/update";
+        return "admin/user/update";
     }
 
     // handle update user
@@ -99,7 +99,7 @@ public class UserController {
             @RequestParam("imgUserFile") MultipartFile file) {
         User currentUser = this.userService.getUserByID(newUser.getId()).orElse(null);
         String avatar = this.uploadService.handleSaveUploadFile(file, "avatar");
-        if(avatar.equals("")) {
+        if (avatar.equals("")) {
             avatar = currentUser.getAvatar();
         }
         if (currentUser != null) {
@@ -118,7 +118,7 @@ public class UserController {
     @GetMapping("/admin/user/delete/{id}")
     public String getDeleteUserPage(Model model, @PathVariable Long id) {
         model.addAttribute("id", id);
-        return "/admin/user/delete";
+        return "admin/user/delete";
     }
 
     // handle delete user
