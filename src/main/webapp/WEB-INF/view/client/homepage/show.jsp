@@ -44,7 +44,7 @@
 
                 <jsp:include page="../layout/header.jsp" />
 
-                    <jsp:include page="../layout/banner.jsp" />
+                <jsp:include page="../layout/banner.jsp" />
 
                 <!-- Fruits Shop Start-->
                 <div class="container-fluid fruite py-5">
@@ -85,16 +85,23 @@
                                                                     <a href="/product/${p.id}">${p.name}</a>
                                                                 </h4>
                                                                 <p style="font-size: 13px;">${p.shortDesc}</p>
-                                                                <div class="d-flex flex-lg-wrap">
+                                                                <div class="d-flex flex-lg-wrap justify-content-center">
                                                                     <p style="font-size: 15px; text-align: center; width: 100%;"
                                                                         class="text-dark fw-bold mb-3">
                                                                         <fmt:formatNumber type="number"
                                                                             value="${p.price}" />đ
                                                                     </p>
-                                                                    <a href="#"
-                                                                        class="mx-auto btn border border-secondary rounded-pill px-3 text-primary"><i
-                                                                            class="fa fa-shopping-bag me-2 text-primary"></i>
-                                                                        Add to cart</a>
+                                                                    <form action="/add-product-to-cart/${p.id}"
+                                                                        method="post">
+                                                                        <input type="hidden"
+                                                                            name="${_csrf.parameterName}"
+                                                                            value="${_csrf.token}" />
+                                                                        <button
+                                                                            class="mx-auto btn border border-secondary rounded-pill px-3 text-primary">
+                                                                            <i
+                                                                                class="fa fa-shopping-bag me-2 text-primary"></i>
+                                                                            Add to cart</button>
+                                                                    </form>
                                                                 </div>
                                                             </div>
                                                         </div>
