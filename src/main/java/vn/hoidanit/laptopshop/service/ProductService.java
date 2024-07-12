@@ -164,7 +164,7 @@ public class ProductService {
                     }
                     // step 2: delete cart and cartdetail
                     for (CartDetail cd : cartDetails) {
-                        this.cartDetailRepository.deleteById(cd.getId());   
+                        this.cartDetailRepository.deleteById(cd.getId());
                     }
                     this.cartRepository.deleteById(cart.getId());
 
