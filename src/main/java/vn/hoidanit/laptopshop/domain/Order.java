@@ -31,4 +31,12 @@ public class Order {
 
     @OneToMany(mappedBy = "order")
     List<OrderDetail> orderDetails;
+
+    private String receiverName;
+
+    private String receiverAddress;
+
+    private String receiverPhone;
+
+    private String status;
 }
