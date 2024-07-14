@@ -23,14 +23,14 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private long totalPrice;
+    private double totalPrice;
     // user id;
     @ManyToOne
     @JoinColumn(name = "user_id")
     User user;
 
     @OneToMany(mappedBy = "order")
-    List<OrderDetail> orderDetails;
+    private List<OrderDetail> orderDetails;
 
     private String receiverName;
 

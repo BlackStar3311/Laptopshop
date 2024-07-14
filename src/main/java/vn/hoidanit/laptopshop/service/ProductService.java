@@ -138,22 +138,27 @@ public class ProductService {
     public void handlePlaceOrder(User user, HttpSession session, String receiverName, String receiverAddress,
             String receiverPhone) {
         {
-            // create order
-            Order order = new Order();
-            order.setUser(user);
-            order.setReceiverAddress(receiverAddress);
-            order.setReceiverName(receiverName);
-            order.setReceiverPhone(receiverPhone);
-            order = this.orderRepository.save(order);
-
-            // create orderdetail
-
             // step1: get cart by user
             Cart cart = this.cartRepository.findByUser(user);
             if (cart != null) {
                 List<CartDetail> cartDetails = cart.getCartDetails();
 
                 if (cartDetails != null) {
+                    // create order
+                    Order order = new Order();
+                    order.setUser(user);
+                    order.setReceiverAddress(receiverAddress);
+                    order.setReceiverName(receiverName);
+                    order.setReceiverPhone(receiverPhone);
+                    order.setStatus("PENDING");
+                    double sum = 0;
+                    for (CartDetail cd : cartDetails) {
+                        sum += cd.getPrice()*cd.getQuantity();
+                    }
+                    order.setTotalPrice(sum);
+                    order = this.orderRepository.save(order);
+
+                    // create orderdetail
                     for (CartDetail cd : cartDetails) {
                         OrderDetail orderDetail = new OrderDetail();
                         orderDetail.setOrder(order);

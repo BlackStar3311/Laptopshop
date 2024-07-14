@@ -10,7 +10,7 @@
                 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
                 <meta name="description" content="Hỏi Dân IT - Dự án laptopshop" />
                 <meta name="author" content="Hỏi Dân IT" />
-                <title>Dashboard</title>
+                <title>Dashboard - Hỏi Dân IT</title>
                 <link href="/css/styles.css" rel="stylesheet" />
                 <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
             </head>
@@ -25,9 +25,44 @@
                                 <h1 class="mt-4">Manage Orders</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item active"><a href="/admin">Dashboard</a></li>
-                                    <li class="breadcrumb-item active">Orders</li>
+                                    <li class="breadcrumb-item active">Order</li>
                                 </ol>
-                                <div>Order</div>
+                                <div class="mt-5">
+                                    <div class="row">
+                                        <div class="col-12 mx-auto">
+                                            <hr>
+                                            <table table class="table table-hover table-bordered">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col">ID</th>
+                                                        <th scope="col">Total price</th>
+                                                        <th scope="col">User</th>
+                                                        <th scope="col">Status</th>
+                                                        <th scope="col">Action</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach items="${orders}" var="o">
+                                                        <tr>
+                                                            <th>${o.id}</th>
+                                                            <td>${o.totalPrice}</td>
+                                                            <td>${o.user.fullName}</td>
+                                                            <td>${o.status}</td>
+                                                            <td>
+                                                                <a href="/admin/order/${o.id}"
+                                                                    class="btn btn-success">View</a>
+                                                                <a href="/admin/order/update/${o.id}"
+                                                                    class="btn btn-warning">Update</a>
+                                                                <a href="/admin/order/delete/${o.id}"
+                                                                    class="btn btn-danger">Delete</a>
+                                                            </td>
+                                                        </tr>
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </main>
                         <jsp:include page="../layout/footer.jsp" />
@@ -35,7 +70,7 @@
                 </div>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
                     crossorigin="anonymous"></script>
-                <script src="js/scripts.js"></script>
+                <script src="/js/scripts.js"></script>
             </body>
 
             </html>
