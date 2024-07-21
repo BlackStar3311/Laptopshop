@@ -46,7 +46,7 @@
 
                                         <li><a class="dropdown-item" href="#">User manager</a></li>
 
-                                        <li><a class="dropdown-item" href="#">Purchase history</a></li>
+                                        <li><a class="dropdown-item" href="/order-history">Purchase history</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
