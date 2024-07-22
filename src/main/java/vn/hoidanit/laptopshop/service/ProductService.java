@@ -1,5 +1,7 @@
 package vn.hoidanit.laptopshop.service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import jakarta.servlet.http.HttpSession;
@@ -39,8 +41,8 @@ public class ProductService {
         this.orderDetailRepository = orderDetailRepository;
     }
 
-    public List<Product> getAllProducts() {
-        return this.productRepository.findAll();
+    public Page<Product> getAllProducts(Pageable pageable) {
+        return this.productRepository.findAll(pageable);
     }
 
     public Product handleSaveProduct(Product product) {
@@ -55,7 +57,7 @@ public class ProductService {
         this.productRepository.deleteById(id);
     }
 
-   public void handleAddProductToCart(String email, long productId, HttpSession session, long quantity) {
+    public void handleAddProductToCart(String email, long productId, HttpSession session, long quantity) {
 
         User user = this.userService.getUserByEmail(email);
         if (user != null) {
@@ -159,7 +161,7 @@ public class ProductService {
                     order.setStatus("PENDING");
                     double sum = 0;
                     for (CartDetail cd : cartDetails) {
-                        sum += cd.getPrice()*cd.getQuantity();
+                        sum += cd.getPrice() * cd.getQuantity();
                     }
                     order.setTotalPrice(sum);
                     order = this.orderRepository.save(order);
