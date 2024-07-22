@@ -68,7 +68,7 @@ public class SecurityConfiguration {
                         .permitAll()
                         //
                         // allow client access these folders
-                        .requestMatchers("/", "/login", "/product/**", "/client/**", "/css/**", "/js/**",
+                        .requestMatchers("/", "/login", "/product/**", "/client/**", "/css/**", "/js/**", "/register",
                                 "/images/**")
                         .permitAll()
                         //
@@ -83,7 +83,7 @@ public class SecurityConfiguration {
                         .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                         .invalidSessionUrl("/logout?expired")
                         .maximumSessions(1)
-                        // allow one-time login, later access kicks previous access 
+                        // allow one-time login, later access kicks previous access
                         .maxSessionsPreventsLogin(false))
                 // .logout(logout>logout.deleteCookies("JSESSIONID").invalidateHttpSession(true))
                 .rememberMe(r -> r.rememberMeServices(rememberMeServices()))
