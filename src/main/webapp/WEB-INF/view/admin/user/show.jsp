@@ -22,7 +22,7 @@
                     <div id="layoutSidenav_content">
                         <main>
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4">Manage Orders</h1>
+                                <h1 class="mt-4">Manage Users</h1>
                                 <ol class="breadcrumb mb-4">
                                     <li class="breadcrumb-item active"><a href="/admin">Dashboard</a></li>
                                     <li class="breadcrumb-item active">Users</li>
@@ -64,6 +64,30 @@
                                                     </c:forEach>
                                                 </tbody>
                                             </table>
+                                            <nav aria-label="Page navigation example">
+                                                <ul class="pagination justify-content-center">
+                                                    <li class="page-item">
+                                                        <a class="${1 eq currentPage ? 'disabled page-link' :'page-link'}"
+                                                            href="/admin/user?page=${currentPage-1}"
+                                                            aria-label="Previous">
+                                                            <span aria-hidden="true">&laquo;</span>
+                                                        </a>
+                                                    </li>
+
+                                                    <c:forEach begin="0" end="${totalPages-1}" varStatus="loop">
+                                                        <li class="page-item">
+                                                            <a class="${(loop.index+1) eq currentPage ? 'active page-link' :'page-link'}"
+                                                                href="/admin/user?page=${loop.index+1}">${loop.index+1}</a>
+                                                        </li>
+                                                    </c:forEach>
+                                                    <li class="page-item">
+                                                        <a class="${totalPages eq currentPage ? 'disabled page-link' :'page-link'}"
+                                                            href="/admin/user?page=${currentPage+1}" aria-label="Next">
+                                                            <span aria-hidden="true">&raquo;</span>
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
                                         </div>
                                     </div>
                                 </div>
