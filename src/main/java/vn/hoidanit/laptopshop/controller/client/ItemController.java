@@ -140,7 +140,8 @@ public class ItemController {
     }
 
     @GetMapping("/products")
-    public String getProductPage(Model model, @RequestParam("page") Optional<String> pageOptional,
+    public String getProductPage(Model model,
+            @RequestParam("page") Optional<String> pageOptional,
             @RequestParam("name") Optional<String> nameOptional,
             @RequestParam("min-price") Optional<String> minOptional,
             @RequestParam("max-price") Optional<String> maxOptional,
@@ -161,9 +162,9 @@ public class ItemController {
 
         Pageable pageable = PageRequest.of(page - 1, 6);
 
-        // String name = nameOptional.isPresent() ? nameOptional.get() : "";
-        // Page<Product> prs = this.productService.getAllProductsWithSpec(pageable,
-        // name);
+        String name = nameOptional.isPresent() ? nameOptional.get() : "";
+        Page<Product> prs = this.productService.getAllProductsWithSpec(pageable,
+                name);
 
         // case1:
         // Double min = minOptional.isPresent() ? Double.parseDouble(minOptional.get())
@@ -192,9 +193,9 @@ public class ItemController {
         // price);
 
         // case 6:
-        List<String> price = Arrays.asList(priceOptional.get().split(","));
-        Page<Product> prs = this.productService.getAllProductsWithSpec(pageable,
-                price);
+        // List<String> price = Arrays.asList(priceOptional.get().split(","));
+        // Page<Product> prs = this.productService.getAllProductsWithSpec(pageable,
+        // price);
 
         // List<String> price = Arrays.asList(priceOptional.get().split(","));
         // Page<Product> prs = this.productService.getAllProductsWithSpec(pageable,
