@@ -187,8 +187,18 @@ public class ItemController {
         // listFactories);
 
         // case 5:
-        String price = priceOptional.isPresent() ? priceOptional.get() : "";
-        Page<Product> prs = this.productService.getAllProductsWithSpec(pageable, price);
+        // String price = priceOptional.isPresent() ? priceOptional.get() : "";
+        // Page<Product> prs = this.productService.getAllProductsWithSpec(pageable,
+        // price);
+
+        // case 6:
+        List<String> price = Arrays.asList(priceOptional.get().split(","));
+        Page<Product> prs = this.productService.getAllProductsWithSpec(pageable,
+                price);
+
+        // List<String> price = Arrays.asList(priceOptional.get().split(","));
+        // Page<Product> prs = this.productService.getAllProductsWithSpec(pageable,
+        // price);
 
         List<Product> products = prs.getContent();
 
