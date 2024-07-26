@@ -23,7 +23,7 @@
                                     <i class="fa fa-shopping-bag fa-2x"></i>
                                     <span
                                         class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1"
-                                        style="top: -5px; left: 15px; height: 20px; min-width: 20px;">
+                                        style="top: -5px; left: 15px; height: 20px; min-width: 20px;" id="sumCart">
                                         ${sessionScope.sum}
                                     </span>
                                 </a>
@@ -34,34 +34,33 @@
                                         <i class="fas fa-user fa-2x"></i>
                                     </a>
 
-                                    <ul class="dropdown-menu dropdown-menu-end p-4" aria labelledby="dropdownMenuLink">
+                                    <ul class="dropdown-menu dropdown-menu-end p-4" aria-labelledby="dropdownMenuLink">
                                         <li class="d-flex align-items-center flex-column" style="min-width: 300px;">
                                             <img style="width: 150px; height: 150px; border-radius: 50%; overflow: hidden;"
                                                 src="/images/avatar/${sessionScope.avatar}" />
                                             <div class="text-center my-3">
-                                                <!-- <c:out value="${pageContext.request.userPrincipal.name}" /> -->
                                                 <c:out value="${sessionScope.fullName}" />
                                             </div>
                                         </li>
 
-                                        <li><a class="dropdown-item" href="#">User manager</a></li>
+                                        <li><a class="dropdown-item" href="#">Quản lý tài khoản</a></li>
 
-                                        <li><a class="dropdown-item" href="/order-history">Purchase history</a></li>
+                                        <li><a class="dropdown-item" href="/order-history">Lịch sử mua hàng</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
                                         <li>
-                                            <form action="/logout" method="post">
+                                            <form method="post" action="/logout">
                                                 <input type="hidden" name="${_csrf.parameterName}"
                                                     value="${_csrf.token}" />
-                                                <button class="dropdown-item" href="#">Logout</button>
+                                                <button class="dropdown-item">Đăng xuất</button>
                                             </form>
                                         </li>
                                     </ul>
                                 </div>
                             </c:if>
-                            <c:if test="${ empty pageContext.request.userPrincipal}">
-                                <a href="/login" class="position-relative me-4 my-auto">
+                            <c:if test="${empty pageContext.request.userPrincipal}">
+                                <a href="/login" class="a-login position-relative me-4 my-auto">
                                     Đăng nhập
                                 </a>
                             </c:if>

@@ -69,7 +69,7 @@ public class SecurityConfiguration {
                         //
                         // allow client access these folders
                         .requestMatchers("/", "/login", "/product/**", "/client/**", "/css/**", "/js/**", "/register",
-                                "/images/**")
+                                "/images/**", "/products/**")
                         .permitAll()
                         //
 
